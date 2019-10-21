@@ -2,21 +2,19 @@ import pygame
 
 class Cube(object):
 
-    def __init__(self,start,dirnx=1,dirny=0,color=(255,0,0)):
+    def __init__(self, start, color, dire):
         self.pos = start
-        self.dirnx = 1
-        self.dirny = 0
+        self.dirnx, self.dirny = dire
         self.color = color
 
-    def move(self, dirnx, dirny):
-        self.dirnx = dirnx
-        self.dirny = dirny
+    def move(self, dire=None):
+        if dire != None:
+            self.dirnx, self.dirny = dire
         self.pos = (self.pos[0] + self.dirnx, self.pos[1] + self.dirny)
 
     def draw(self, surface, size, rows, eyes=False):
         dis = size // rows
-        i = self.pos[0]
-        j = self.pos[1]
+        i, j = self.pos
 
         pygame.draw.rect(surface, self.color, (i*dis+1,j*dis+1, dis-2, dis-2))
         if eyes:
