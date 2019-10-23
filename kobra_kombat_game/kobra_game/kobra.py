@@ -1,34 +1,31 @@
 import pygame
 from .cube import Cube
 
-class Snake(object):
-    def __init__(self, color, pos, dire):
+#TODO COMEÇAR COBRA COM TAMANHO 3
+## Tanto no init quanto no reset
+
+class Kobra(object):# {{{
+
+    def __init__(self, color, pos, dire):# {{{
         self.color = color
         self.head = Cube(pos, self.color, dire)
         self.body = [self.head]
         self.dirnx, self.dirny = dire
         self.turns = {}
         self.alive = True
-        self.score = 1
+        self.score = 1# }}}
 
-    def move(self, rows, key):
-        # for event in pygame.event.get():
-        #     if event.type == pygame.QUIT:
-        #         pygame.quit()
-
-        #     keys = pygame.key.get_pressed()
-
-        #     for key in keys:
-        if key == pygame.K_LEFT:
+    def move(self, rows, key):# {{{
+        if key == "l":
             self.dirnx, self.dirny = (-1, 0)
 
-        elif key == pygame.K_RIGHT:
+        elif key == "r":
             self.dirnx, self.dirny = (1,0)
 
-        elif key == pygame.K_UP:
+        elif key == "u":
             self.dirnx, self.dirny = (0,-1)
 
-        elif key == pygame.K_DOWN:
+        elif key == "d":
             self.dirnx, self.dirny = (0,1)
 
         self.turns[self.head.pos] = [self.dirnx, self.dirny]
@@ -48,24 +45,26 @@ class Snake(object):
             if c.dirnx == 1 and c.pos[0] > rows-1: c.pos = (0,c.pos[1])
             if c.dirny == 1 and c.pos[1] > rows-1: c.pos = (c.pos[0], 0)
             if c.dirny == -1 and c.pos[1] < 0: c.pos = (c.pos[0],rows-1)
+# }}}
 
-    def reset(self, pos):
+    def reset(self, pos):# {{{
         self.head = Cube(pos, self.color, (0,1))
         self.body = [self.head]
         self.turns = {}
         self.dirnx = 0
         self.dirny = 1
         self.alive = True
+        self.score = 1# }}}
 
-    def die(self):
+    def die(self):# {{{
         self.head = None
         self.body = []
         self.turns = {}
         self.dirnx = 0
         self.dirny = 1
-        self.alive = False
+        self.alive = False# }}}
 
-    def addCube(self):
+    def addCube(self):# {{{
         self.score += 1
         tail = self.body[-1]
         dx, dy = tail.dirnx, tail.dirny
@@ -73,8 +72,9 @@ class Snake(object):
         self.body.append(Cube(NewPos, self.color, (dx, dy)))
 
         self.body[-1].dirnx = dx
-        self.body[-1].dirny = dy
+        self.body[-1].dirny = dy# }}}
 
-    def draw(self, surface, size, rows):
+    def draw(self, surface, size, rows):# {{{
         for i, c in enumerate(self.body):
-            c.draw(surface, size, rows, i==0)
+            c.draw(surface, size, rows, i==0)# }}}
+# }}}

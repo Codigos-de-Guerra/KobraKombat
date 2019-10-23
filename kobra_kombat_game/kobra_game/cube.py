@@ -1,18 +1,18 @@
 import pygame
 
-class Cube(object):
+class Cube(object):# {{{
 
-    def __init__(self, start, color, dire):
+    def __init__(self, start, color, dire):# {{{
         self.pos = start
         self.dirnx, self.dirny = dire
-        self.color = color
+        self.color = color# }}}
 
-    def move(self, dire=None):
+    def move(self, dire=None):# {{{
         if dire != None:
             self.dirnx, self.dirny = dire
-        self.pos = (self.pos[0] + self.dirnx, self.pos[1] + self.dirny)
+        self.pos = (self.pos[0] + self.dirnx, self.pos[1] + self.dirny)# }}}
 
-    def draw(self, surface, size, rows, eyes=False):
+    def draw(self, surface, size, rows, eyes=False):# {{{
         dis = size // rows
         i, j = self.pos
 
@@ -23,6 +23,5 @@ class Cube(object):
             circleMiddle = (i*dis+centre-radius,j*dis+8)
             circleMiddle2 = (i*dis + dis -radius*2, j*dis+8)
             pygame.draw.circle(surface, (0,0,0), circleMiddle, radius)
-            pygame.draw.circle(surface, (0,0,0), circleMiddle2, radius)
-
-
+            pygame.draw.circle(surface, (0,0,0), circleMiddle2, radius)# }}}
+# }}}

@@ -1,3 +1,3 @@
 from .cube import Cube
-from .snake import Snake
+from .kobra import Kobra
 from .snack import Snack
