@@ -44,6 +44,16 @@ class Game(object):
                     kobra.addCube()
                     del self.snacks[kobra.head.pos]# }}}
 
+    def getScores(self):# {{{
+        scores = []
+        for IdUser, kobra in self.kobras.items():
+            if kobra.alive:
+                scores.append((kobra.score, IdUser))
+
+        scores.sort(reverse=True)
+
+        return scores# }}}
+
     # Checking for all kobras
     def KobraKollision(self):# {{{
         occupied = {}
@@ -71,11 +81,7 @@ class Game(object):
                     self.kobras[Id].move(self.rows)
 
         self.delSnack()
-        self.KobraKollision()
-
-        if len(self.snacks) < 1:
-            pos = self.randomPos()
-            self.addSnack(pos)# }}}
+        self.KobraKollision()# }}}
 
     def message_box(self,subject, content):# {{{
         root = tk.Tk()
@@ -114,12 +120,61 @@ class Game(object):
             pygame.draw.line(surface, (255,255,255), (x,0),(x,self.size))
             pygame.draw.line(surface, (255,255,255), (0,y),(self.size,y))# }}}
 
-    def redrawWindow(self, surface):# {{{
+    def drawEndGame(self, surface, Id):# {{{
+        bigbigFont = pygame.font.SysFont('comicsansms', 52)
+
+        goText = bigbigFont.render('GAME OVER', True, (255,255,255), (0,0,0))
+        scoreText = bigbigFont.render('YOUR SCORE: {}'.format(self.kobras[Id].score), True, (255,255,255), (0,0,0))
+
+        goTextRect = goText.get_rect()
+        scoreTextRect = scoreText.get_rect()
+
+        goTextRect.center = (self.size//2, self.size//2)
+        scoreTextRect.center = (self.size//2, self.size//2 + goTextRect.height)
+
+        surface.blit(goText, goTextRect)
+        surface.blit(scoreText, scoreTextRect)# }}}
+
+    def redrawWindow(self, surface, Id):# {{{
         surface.fill((0,0,0))
         self.drawGrid(surface)
+        self.drawInfo(surface, Id)
 
         for s in self.kobras.values():
             s.draw(surface, self.size, self.rows)
         for snack in self.snacks.values():
             snack.draw(surface, self.size, self.rows)
+
+        if not self.kobras[Id].alive:
+            self.drawEndGame(surface, Id)
+
         pygame.display.update()# }}}
+
+    def drawInfo(self, surface, Id):# {{{
+        bigFont = pygame.font.SysFont('comicsansms', 32)
+        normalFont = pygame.font.SysFont('comicsansms', 22)
+        smallFont = pygame.font.SysFont('comicsansms', 18)
+
+        idText = normalFont.render('Your ID is: {}'.format(Id), True, (255,255,255), (0,0,0))
+        titleText = bigFont.render('ScoreBoard', True, (255,255,255), (0,0,0))
+
+        titleTextRect = titleText.get_rect()
+        idTextRect = idText.get_rect()
+
+        titleTextRect.topleft = (self.size + 15, 15)
+        idTextRect.topleft = (self.size + 15, titleTextRect.height + 15)
+
+        surface.blit(titleText, titleTextRect)
+        surface.blit(idText, idTextRect)
+
+        scores = self.getScores()
+        # scores = [1,2,3]
+
+        lastHeight = titleTextRect.height + idTextRect.height + 15
+        for score in scores:
+            scoreText = smallFont.render("{}: {}".format(score[1], score[0]), True, (255,255,255), (0,0,0))
+            scoreTextRect = scoreText.get_rect()
+            scoreTextRect.topleft = (self.size + 15, lastHeight + 10)
+            lastHeight = scoreTextRect.height + lastHeight
+            surface.blit(scoreText, scoreTextRect)# }}}
+
