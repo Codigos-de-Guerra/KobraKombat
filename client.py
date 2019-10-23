@@ -1,3 +1,6 @@
+# Cliente
+
+# IMPORTS {{{
 import pygame
 import tkinter as tk
 from tkinter import simpledialog
@@ -7,6 +10,7 @@ from global_var import *
 import socket
 import signal
 import pickle
+# }}}
 
 flag = True
 

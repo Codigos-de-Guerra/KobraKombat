@@ -1,5 +1,6 @@
 # cenario 2
 
+# IMPORTS {{{
 import pygame
 import tkinter as tk
 
@@ -11,6 +12,7 @@ import threading
 
 from aux_server import manageInput, manageGameLogic, manageOutput
 from global_var import *
+# }}}
 
 fila = []
 flag = True
@@ -21,9 +23,7 @@ dur = {
     'g_time': 0
 }
 
-
-
-def thread_func(read_list, s, d):
+def thread_func(read_list, s, d):# {{{
     global flag
     while True:
 
@@ -36,9 +36,9 @@ def thread_func(read_list, s, d):
         if len(read_list) == 1:
             flag = False
             break
+# }}}
 
-
-def main():
+def main():# {{{
     global flag
     clock = pygame.time.Clock() # clock
 
@@ -74,6 +74,6 @@ def main():
                 manageOutput(socks_ok, game)
                 dur['o_time'] += time.time() - t
         print(dur)
-
+# }}}
 
 main()

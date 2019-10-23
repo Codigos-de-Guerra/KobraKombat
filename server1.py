@@ -1,5 +1,6 @@
 # cenario 1
 
+# IMPORTS {{{
 import pygame
 import tkinter as tk
 
@@ -11,8 +12,9 @@ import threading
 
 from aux_server import manageInput, manageGameLogic, manageOutput
 from global_var import *
+# }}}
 
-def thread_func(PORT, dur):
+def thread_func(PORT, dur):# {{{
     read_list = []
     clock = pygame.time.Clock() # clock
     checkpoint_500ms = time.time()
@@ -25,7 +27,6 @@ def thread_func(PORT, dur):
         s.listen(5)
         read_list.append(s)
         while True:
-            # pygame.time.delay(DELAY) # pausa em milisegundos
             clock.tick(TICK) # sincronizacao
 
             t = time.time()
@@ -42,8 +43,9 @@ def thread_func(PORT, dur):
 
             if(len(read_list) == 1):
                 break
+# }}}
 
-def main():
+def main():# {{{
     PORT = 12346
 
     dur = {
@@ -56,5 +58,6 @@ def main():
     t.join()
 
     print(dur)
+# }}}
 
 main()

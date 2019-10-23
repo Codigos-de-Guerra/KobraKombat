@@ -1,3 +1,6 @@
+# Conexao de referencia
+
+# IMPORTS {{{
 import pygame
 import tkinter as tk
 
@@ -8,8 +11,9 @@ import time
 
 from aux_server import manageInput, manageGameLogic, manageOutput
 from global_var import *
+# }}}
 
-def main():
+def main():# {{{
     pygame.init()
 
     clock = pygame.time.Clock() # clock
@@ -37,5 +41,5 @@ def main():
 
             if len(read_list) == 1:
                 break
-
+# }}}
 main()
