@@ -14,12 +14,11 @@ def INT_handler(sig_num, arg):# {{{
     flag = False
     pygame.quit()# }}}
 
-def conectar():
+def conectar():# {{{
     root = tk.Tk()
     root.withdraw()
-    # d = LoginDialog(root, "Login")
-    # return (d.r1, int(d.r2))
-    return ("192.168.0.16", 12347)
+    d = LoginDialog(root, "Login")
+    return (d.r1, int(d.r2)) # }}}
 
 # reads directions when inputed
 def directions(avaiable_keys):# {{{
@@ -36,7 +35,7 @@ def directions(avaiable_keys):# {{{
 
     return None# }}}
 
-def main():
+def main():# {{{
     signal.signal(signal.SIGINT, INT_handler)
     avaiable_keys = { pygame.K_LEFT:"l",
                       pygame.K_RIGHT:"r",
@@ -76,6 +75,6 @@ def main():
                 print("FAIL!")
 
 
-        s.sendall((conn + "_OUT" + ";").encode('ascii'))
+        s.sendall((conn + "_OUT" + ";").encode('ascii'))# }}}
 
 main()

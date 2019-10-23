@@ -123,7 +123,7 @@ class Game(object):
     def drawEndGame(self, surface, Id):# {{{
         bigbigFont = pygame.font.SysFont('comicsansms', 52)
 
-        goText = bigbigFont.render('GAME OVER', True, (255,255,255), (0,0,0))
+        goText = bigbigFont.render('WASTED', True, (255,255,255), (0,0,0))
         scoreText = bigbigFont.render('YOUR SCORE: {}'.format(self.kobras[Id].score), True, (255,255,255), (0,0,0))
 
         goTextRect = goText.get_rect()
