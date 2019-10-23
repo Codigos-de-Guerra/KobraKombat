@@ -29,7 +29,7 @@ def main():
 
 
         while True:
-            pygame.time.delay(DELAY) # pausa em milisegundos
+            # pygame.time.delay(DELAY) # pausa em milisegundos
             clock.tick(TICK) # sincronizacao
             new_players, lost_connections, moves, socks_ok, d = manageInput(read_list, s, d)
             game, checkpoint_500ms = manageGameLogic(game, new_players, lost_connections, moves, checkpoint_500ms)

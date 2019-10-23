@@ -25,7 +25,7 @@ def thread_func(PORT, dur):
         s.listen(5)
         read_list.append(s)
         while True:
-            pygame.time.delay(DELAY) # pausa em milisegundos
+            # pygame.time.delay(DELAY) # pausa em milisegundos
             clock.tick(TICK) # sincronizacao
 
             t = time.time()
