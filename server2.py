@@ -60,7 +60,7 @@ def main():
         t.start()
 
         while flag:
-            pygame.time.delay(DELAY) # pausa em milisegundos
+            # pygame.time.delay(DELAY) # pausa em milisegundos
             clock.tick(TICK) # sincronizacao
             while len(fila) != 0:
                 new_players, lost_connections, moves, socks_ok, d = fila[0]
