@@ -42,12 +42,13 @@ def main():# {{{
                       pygame.K_UP:"u",
                       pygame.K_DOWN:"d" }
 
+    HOST, PORT = conectar()
     pygame.init()
     win = pygame.display.set_mode((SIZE+150, SIZE))
     clock = pygame.time.Clock()
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect(conectar())
+        s.connect((HOST,PORT))
 
         ip, port = s.getsockname()
         conn = (ip + ":" + str(port))

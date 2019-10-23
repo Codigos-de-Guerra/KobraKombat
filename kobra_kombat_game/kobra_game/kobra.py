@@ -15,7 +15,10 @@ class Kobra(object):# {{{
         self.alive = True
         self.score = 1# }}}
 
-    def move(self, rows, key):# {{{
+        self.addCube()
+        self.addCube()
+
+    def move(self, rows, key=None):# {{{
         if key == "l":
             self.dirnx, self.dirny = (-1, 0)
 
@@ -55,6 +58,9 @@ class Kobra(object):# {{{
         self.dirny = 1
         self.alive = True
         self.score = 1# }}}
+
+        self.addCube()
+        self.addCube()
 
     def die(self):# {{{
         self.head = None
