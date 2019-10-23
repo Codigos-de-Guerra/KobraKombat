@@ -19,7 +19,7 @@ def conectar():
     root.withdraw()
     # d = LoginDialog(root, "Login")
     # return (d.r1, int(d.r2))
-    return ("10.50.153.76", 12347)
+    return ("192.168.0.16", 12347)
 
 # reads directions when inputed
 def directions(avaiable_keys):# {{{
@@ -44,7 +44,7 @@ def main():
                       pygame.K_DOWN:"d" }
 
     pygame.init()
-    win = pygame.display.set_mode((SIZE, SIZE))
+    win = pygame.display.set_mode((SIZE+150, SIZE))
     clock = pygame.time.Clock()
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -71,7 +71,7 @@ def main():
 
             try:
                 Id, game = pickle.loads(data)
-                game.redrawWindow(win)
+                game.redrawWindow(win, Id)
             except:
                 print("FAIL!")
 

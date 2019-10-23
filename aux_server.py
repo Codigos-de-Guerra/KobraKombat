@@ -50,9 +50,9 @@ def manageGameLogic(game, new_players, lost_connections, moves, checkpoint_500ms
     for id_user, move in moves:
         game.newScene({id_user: move})
 
-    # if time.time() - checkpoint_500ms >= 0.5:
-    #     game.addSnack()
-    #     checkpoint_500ms = time.time()
+    if time.time() - checkpoint_500ms >= 0.5:
+        game.addSnack()
+        checkpoint_500ms = time.time()
 
     return game, checkpoint_500ms# }}}
 
