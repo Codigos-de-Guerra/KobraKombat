@@ -1,15 +1,15 @@
 # Cliente
 
 # IMPORTS {{{
+import pickle
 import pygame
+import signal
+import socket
 import tkinter as tk
 from tkinter import simpledialog
+
 from kobra_kombat_game import Game, LoginDialog
 from global_var import *
-
-import socket
-import signal
-import pickle
 # }}}
 
 flag = True

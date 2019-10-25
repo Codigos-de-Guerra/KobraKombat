@@ -1,8 +1,11 @@
-from random import randint, randrange
+
+# IMPORTS {{{
 import pygame
+from random import randint, randrange
 import tkinter as tk
 
 from .kobra_game import *
+# }}}
 
 class Game(object):
 

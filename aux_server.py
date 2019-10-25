@@ -1,6 +1,6 @@
+import pickle
 import select
 import time
-import pickle
 
 def manageInput(read_list, s, d):# {{{
     readable, writeable, error = select.select(read_list,[],[])

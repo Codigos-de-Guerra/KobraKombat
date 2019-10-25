@@ -2,15 +2,13 @@
 
 # IMPORTS {{{
 import pygame
-import tkinter as tk
-
-from kobra_kombat_game.game import Game
-
 import socket
 import time
+import tkinter as tk
 
 from aux_server import manageInput, manageGameLogic, manageOutput
 from global_var import *
+from kobra_kombat_game.game import Game
 # }}}
 
 def main():# {{{
@@ -33,7 +31,6 @@ def main():# {{{
 
 
         while True:
-            # pygame.time.delay(DELAY) # pausa em milisegundos
             clock.tick(TICK) # sincronizacao
             new_players, lost_connections, moves, socks_ok, d = manageInput(read_list, s, d)
             game, checkpoint_500ms = manageGameLogic(game, new_players, lost_connections, moves, checkpoint_500ms)

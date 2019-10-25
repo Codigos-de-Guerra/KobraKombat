@@ -1,7 +1,6 @@
 import tkinter as tk
-from tkinter import simpledialog
 
-class LoginDialog(simpledialog.Dialog):
+class LoginDialog(tk.simpledialog.Dialog):
     def body(self, master):
         self.l1 = tk.Label(master, text="IP do servidor:", font=(None, 15))
         self.e1 = tk.Entry(master)

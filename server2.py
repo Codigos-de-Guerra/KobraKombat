@@ -2,16 +2,14 @@
 
 # IMPORTS {{{
 import pygame
-import tkinter as tk
-
-from kobra_kombat_game.game import Game
-
 import socket
-import time
 import threading
+import time
+import tkinter as tk
 
 from aux_server import manageInput, manageGameLogic, manageOutput
 from global_var import *
+from kobra_kombat_game.game import Game
 # }}}
 
 fila = []
